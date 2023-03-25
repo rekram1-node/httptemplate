@@ -56,6 +56,7 @@ func New(name string) (*App, error) {
 		rootCancelContext: cancelFn,
 		Router:            r,
 		Logger:            logger,
+		Config:            cfg,
 	}
 
 	r.Use(

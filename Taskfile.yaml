@@ -4,6 +4,7 @@ version: '3'
 
 vars:
   NAME: 'httptemplate'
+dotenv: ['.env']
 
 tasks:
   clean:
