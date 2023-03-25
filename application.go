@@ -68,6 +68,7 @@ func New(name string) (*App, error) {
 	)
 
 	defaultMiddlewares(app)
+	defaultRoutes(app)
 
 	r.Get("/health", health.NewHandler(health.NewChecker(
 		health.WithCacheDuration(1*time.Second),

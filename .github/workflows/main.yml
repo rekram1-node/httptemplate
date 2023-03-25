@@ -6,15 +6,15 @@ on:
       - main
 
 jobs:
-  tag-release:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Create GitHub release
-        uses: Roang-zero1/github-create-release-action@v3
-        with:
-          version_regex: ^v[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  # tag-release:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Create GitHub release
+  #       uses: Roang-zero1/github-create-release-action@v3
+  #       with:
+  #         version_regex: ^v[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
   goreleaser:
     runs-on: ubuntu-latest
@@ -32,6 +32,11 @@ jobs:
       #   env:
       #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       #     WITH_V: true
+
+      - name: Bump version and push tag
+        uses: mathieudutour/github-tag-action@v4.5
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish Release
         uses: goreleaser/goreleaser-action@v2
